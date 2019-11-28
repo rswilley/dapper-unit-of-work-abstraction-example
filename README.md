@@ -5,6 +5,7 @@ README is a work in progress
 
 Create the MySQL test database
 
+```
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`dapper_example` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 /*Table structure for table `user` */
