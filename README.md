@@ -21,3 +21,32 @@ CREATE TABLE `user` (
   `CreatedDate` datetime NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+Starting a transaction and writing data to the database 
+
+```
+//UnitOfWorkContext implements IDisposable. The default action is to rollback on error.
+//Setting WasSuccessful to true will Commit the transaction when Dispose is called.
+using var unitOfWorkContext = await _storageManager.StartUnitOfWork() {
+  var newUser = await _storageManager.DbContext.UserRepository.Add(new User
+  {
+      EmailAddress = user.EmailAddress,
+      Password = user.Password, //Never store passwords in plain text in a real world application
+      FirstName = user.FirstName,
+      LastName = user.LastName,
+      CreatedDate = DateTime.UtcNow
+  }, unitOfWorkContext);
+
+  unitOfWorkContext.WasSuccessful = true; //Commits the transaction when Dispose is called
+}
+```
+
+Opening a database connection and reading data from the database
+
+```
+//SessionContext implements IDisposable and will automatically close the
+//database connection when Dispose is called
+using var sessionContext = await _storageManager.StartSession() {
+  var user = await _storageManager.DbContext.UserRepository.GetById(id, sessionContext);
+}
+```
