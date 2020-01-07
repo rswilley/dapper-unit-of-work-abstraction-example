@@ -28,7 +28,7 @@ Starting a transaction and writing data to the database
 ```
 //UnitOfWorkContext implements IDisposable. The default action is to rollback on error.
 //Setting WasSuccessful to true will Commit the transaction when Dispose is called.
-using var unitOfWorkContext = await _storageManager.StartUnitOfWork() {
+using (var unitOfWorkContext = await _storageManager.StartUnitOfWork()) {
   var newUser = await _storageManager.DbContext.UserRepository.Add(new User
   {
       EmailAddress = user.EmailAddress,
@@ -47,7 +47,7 @@ Opening a database connection and reading data from the database
 ```
 //SessionContext implements IDisposable and will automatically close the
 //database connection when Dispose is called
-using var sessionContext = await _storageManager.StartSession() {
+using (var sessionContext = await _storageManager.StartSession()) {
   var user = await _storageManager.DbContext.UserRepository.GetById(id, sessionContext);
 }
 ```
