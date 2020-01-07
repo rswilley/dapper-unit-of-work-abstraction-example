@@ -21,6 +21,7 @@ CREATE TABLE `user` (
   `CreatedDate` datetime NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 Starting a transaction and writing data to the database 
 
