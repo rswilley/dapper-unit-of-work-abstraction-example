@@ -1,8 +1,6 @@
 # .NET Core Dapper Unit of Work Abstraction example
 Dapper Unit of Work with Generic Repository Example in C# and .NET Core 3.0
 
-README is a work in progress
-
 Create the MySQL test database
 
 ```
