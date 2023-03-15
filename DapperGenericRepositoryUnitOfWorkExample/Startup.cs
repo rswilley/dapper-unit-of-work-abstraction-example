@@ -28,7 +28,7 @@ namespace DapperGenericRepositoryUnitOfWorkExample
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IConnectionSession, ConnectionSession>();
             services.AddTransient<IStorageManager, StorageManager>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
